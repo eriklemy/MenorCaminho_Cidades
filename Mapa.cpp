@@ -37,8 +37,8 @@ void Mapa::une(TipoDado cidadeA, TipoDado cidadeB, float distancia) {
     int b = posCidade(cidadeB);
     cout << "une: " << Cidades[a] << "| " << Cidades[b] << endl;
     if(validos(a, b)) {
-        adj[a][b] = true;
-        _peso[a][b] = distancia;
+        adj[a][b] = adj[b][a] = true;
+        _peso[a][b] = _peso[b][a] = distancia;
     }
 };
 
@@ -46,8 +46,8 @@ void Mapa::remove(TipoDado cidadeA, TipoDado cidadeB) {
     int a = posCidade(cidadeA);
     int b = posCidade(cidadeB);
     if(validos(a, b)) {
-        adj[a][b] = false;
-        _peso[a][b] = INFINITO;
+        adj[a][b] = adj[b][a] = false;
+        _peso[a][b] = _peso[b][a] = INFINITO;
     }
 };
 
@@ -62,7 +62,7 @@ void Mapa::imprime() const {
     cout << "|       Adjacente       | Cidades  |" << endl;
     cout << "|-----------------------|----------|" << endl;
     for(size_t cidades = 0; cidades < numNos; cidades++) 
-        cout << "| " << Cidades[cidades] << " ";
+        cout << "| " << Cidades[cidades].at(0) << Cidades[cidades].at(1) << "\t";
 
     cout << endl;
     
@@ -73,7 +73,7 @@ void Mapa::imprime() const {
                 cout << "| " << _peso[i][j] << "\t";
             // cidades nao adjacentes
             if(!adj[i][j])
-                cout << "|False" << "\t";
+                cout << "| False" << "\t";
         }
         // nome das cidades na ultima coluna
         cout << "| " << Cidades[i] << endl;
@@ -95,7 +95,7 @@ void Mapa::MenorCaminho(TipoDado cidadeA, TipoDado cidadeB) {
 };
 
 int Mapa::MenorCaminho(int s, int t, int precede[]) {
-    int distancia[MAXNOS];
+    float distancia[MAXNOS];
     bool calculado[MAXNOS];
 
     for(size_t i = 0; i < numNos; i++) {

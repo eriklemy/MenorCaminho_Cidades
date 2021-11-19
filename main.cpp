@@ -28,14 +28,23 @@ int main() {
     m.adiciona_cidade("Blumenau");
     m.adiciona_cidade("Joinville");
     m.adiciona_cidade("Itajai");
+    m.adiciona_cidade("Lages");
+    m.adiciona_cidade("Florianopolis");
     m.une("Curitiba", "Registro", 221.2);
     m.une("Curitiba", "Ponta Grossa", 114);
     m.une("Curitiba", "Mafra", 115);
     m.une("Curitiba", "Joinville", 132);
-    m.une("Curitiba", "Itare", 208);
+    m.une("Curitiba", "Itarare", 208);
     m.une("Registro", "Sao Paulo", 185.9);
     m.une("Itarare", "Sao Paulo", 342);
-
+    m.une("Mafra", "Porto Uniao", 143);
+    m.une("Mafra", "Lages", 349);
+    m.une("Lages", "Porto Uniao", 271);
+    m.une("Lages", "Blumenau", 223);
+    m.une("Lages", "Florianopolis", 231);
+    m.une("Itajai", "Florianopolis", 102);
+    m.une("Itajai", "Blumenau", 52.3);
+    m.une("Itajai", "Joinville", 86.2);
     // adiciona_cidade();
     // uneCidade();
     m.imprime();    
