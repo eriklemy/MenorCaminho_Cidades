@@ -14,7 +14,7 @@ class Mapa {
         void remove(TipoDado cidadeA, TipoDado cidadeB);
         bool adjacente(int a, int b) const;
         void imprime() const;
-        int peso(int corrente, int i) const;
+        float peso(int corrente, int i) const;
         void MenorCaminho(TipoDado cidadeA, TipoDado cidadeB);
     private: 
         int numNos;
@@ -23,6 +23,6 @@ class Mapa {
         TipoDado Cidades[MAXNOS];
         bool validos(int a, int b) const;
         int posCidade(TipoDado cidade) const;
-        int MenorCaminho(int corrente, int i, int precede[]);
+        float MenorCaminho(int corrente, int i, int precede[]);
 };
 #endif // !MAPA_H
