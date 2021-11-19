@@ -6,14 +6,14 @@ using std::endl;
 
 // sobrecarga
 Mapa::Mapa() {
-    numNos = numCidades = 0;
+    numNos = 0;
     adj[0][0] = false;
     _peso[0][0] = INFINITO;
 };
 
 void Mapa::adiciona_cidade(TipoDado cidade) {
-    Cidades[numCidades] = cidade;
-    numCidades++;
+    Cidades[numNos] = cidade;
+    numNos++;
 };
 
 bool Mapa::validos(int a, int b) const {
@@ -21,30 +21,34 @@ bool Mapa::validos(int a, int b) const {
 };
 
 int Mapa::posCidade(TipoDado cidade) const {
-    for(size_t i = 0; i < numCidades; i++) {
-        if(Cidades[i] == cidade) {
-            cout << Cidades[i] << endl; 
+    for(size_t i = 0; i < numNos; i++) {
+        cout << "antes: " << Cidades[i] << "| " << cidade << endl;
+        if(cidade.compare(Cidades[i]) == 0) {
+            cout << "depois: " << Cidades[i] << "| " << cidade << endl;
             return i;
         }
     }
+    cout << "teste 1" << endl;
     return INFINITO;
 };
 
 void Mapa::une(TipoDado cidadeA, TipoDado cidadeB, float distancia) {
     int a = posCidade(cidadeA);
     int b = posCidade(cidadeB);
+    cout << "une: " << Cidades[a] << "| " << Cidades[b] << endl;
     if(validos(a, b)) {
         adj[a][b] = true;
         _peso[a][b] = distancia;
-        numNos++;
     }
 };
 
 void Mapa::remove(TipoDado cidadeA, TipoDado cidadeB) {
     int a = posCidade(cidadeA);
     int b = posCidade(cidadeB);
-    if(validos(a, b))
+    if(validos(a, b)) {
         adj[a][b] = false;
+        _peso[a][b] = INFINITO;
+    }
 };
 
 bool Mapa::adjacente(int a, int b) const {
@@ -54,26 +58,33 @@ bool Mapa::adjacente(int a, int b) const {
 };
 
 void Mapa::imprime() const {
-    for(int i = 0; i < numNos; i++) {
-        for(int j = 0; j < numNos; j++)
-            cout << adj[i][j];
-        cout << endl;
-    }
+    cout << "------------------------------------" << endl;
+    cout << "|       Adjacente       | Cidades  |" << endl;
+    cout << "|-----------------------|----------|" << endl;
+    for(size_t cidades = 0; cidades < numNos; cidades++) 
+        cout << "| " << Cidades[cidades] << " ";
 
     cout << endl;
-
-    for(int i = 0; i < numNos; i++) {
-        for(int j = 0; j < numNos; j++) {
-            if(adjacente(i, j))
-                cout << _peso[i][j] << "  ";
-            else cout << "*    ";
+    
+    for(size_t i = 0; i < numNos; i++) {
+        for(size_t j = 0; j < numNos; j++) {
+            // distancia se as cidades forem adjacentes
+            if(adj[i][j]) 
+                cout << "| " << _peso[i][j] << "\t";
+            // cidades nao adjacentes
+            if(!adj[i][j])
+                cout << "|False" << "\t";
         }
-        cout << endl;
+        // nome das cidades na ultima coluna
+        cout << "| " << Cidades[i] << endl;
     }
+    cout << "---------------------------------\t" << endl;
 };
 
 int Mapa::peso(int corrente, int i) const {
-    return i;
+    if(adjacente(i, corrente))
+        return _peso[i][corrente];
+    else return INFINITO;
 };
 
 void Mapa::MenorCaminho(TipoDado cidadeA, TipoDado cidadeB) {
@@ -96,9 +107,9 @@ int Mapa::MenorCaminho(int s, int t, int precede[]) {
     calculado[s] = true;
     int corrente = s;
 
-    while (corrente != t) {
+    while(corrente != t) {
         float menordist = INFINITO;            // menor das novas distâncias calculadas
-        int k;                               // próximo corrente (aquele com menor distância)
+        int k;                                 // próximo corrente (aquele com menor distância)
         float dc = distancia[corrente];        // distância calculada de s até o nó corrente
         for(size_t i = 0; i < numNos; i++) {
             if (!calculado[i]) {

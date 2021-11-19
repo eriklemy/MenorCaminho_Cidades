@@ -18,7 +18,6 @@ class Mapa {
         void MenorCaminho(TipoDado cidadeA, TipoDado cidadeB);
     private: 
         int numNos;
-        int numCidades;
         float _peso[MAXNOS][MAXNOS];
         int adj[MAXNOS][MAXNOS];
         TipoDado Cidades[MAXNOS];
