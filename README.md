@@ -7,6 +7,8 @@ Entrega 23/11/2021 </pre>
 - Projeto Final 
 - Estrutura: Grafo 
 
+# Grafo 
+![screenshot](p2-cidades.png)
 # Criterio 
 O critério para determinar qual seria este "melhor" caminho pode ser:
 
