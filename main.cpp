@@ -30,6 +30,7 @@ int main() {
     m.adiciona_cidade("Itajai");
     m.adiciona_cidade("Lages");
     m.adiciona_cidade("Florianopolis");
+    
     m.une("Curitiba", "Registro", 221.2);
     m.une("Curitiba", "Ponta Grossa", 114);
     m.une("Curitiba", "Mafra", 115);

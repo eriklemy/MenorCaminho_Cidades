@@ -90,13 +90,14 @@ float Mapa::peso(int corrente, int i) const {
 void Mapa::MenorCaminho(TipoDado cidadeA, TipoDado cidadeB) {
     int a = posCidade(cidadeA);
     int b = posCidade(cidadeB);
-    int precede[] = {INFINITO};
-    cout << MenorCaminho(a, b, precede) << endl;
+    int precede[] = {a};
+    cout << MenorCaminho(a, b, precede) << "Km" << endl;
 };
 
 float Mapa::MenorCaminho(int s, int t, int precede[]) {
     float distancia[MAXNOS];
     bool calculado[MAXNOS];
+    TipoDado caminho[numNos];
 
     for(size_t i = 0; i < numNos; i++) {
         distancia[i] = INFINITO;
@@ -107,11 +108,12 @@ float Mapa::MenorCaminho(int s, int t, int precede[]) {
     calculado[s] = true;
     int corrente = s;
 
+    int count = 0;
     while(corrente != t) {
         float menordist = INFINITO;            // menor das novas distâncias calculadas
         int k;                                 // próximo corrente (aquele com menor distância)
         float dc = distancia[corrente];        // distância calculada de s até o nó corrente
-        cout << "distancia: " << dc << endl;
+        caminho[count] = Cidades[precede[count]];
         for(size_t i = 0; i < numNos; i++) {
             if(!calculado[i]) {
                 float novadist = dc + peso(corrente, i);
@@ -123,10 +125,20 @@ float Mapa::MenorCaminho(int s, int t, int precede[]) {
                     menordist = distancia[i];
                     k = i;
                 }
-            } // se já calculado não faz nada
+            } // se já calculado não faz nada        
         } // fim do for
         corrente = k;
         calculado[corrente] = true;
+        count++;
     }
+
+    cout << "Menor caminho = ";
+    for(size_t i = 0; i < count; i++) {
+        cout << caminho[i] << " -> ";
+        if(!caminho[i].empty())
+            cout << Cidades[corrente];
+    }
+
+    cout << "\nMenor distancia = ";
     return distancia[t];
 }
