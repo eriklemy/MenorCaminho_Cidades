@@ -113,7 +113,7 @@ float Mapa::MenorCaminho(int s, int t, int precede[]) {
         float menordist = INFINITO;            // menor das novas distâncias calculadas
         int k;                                 // próximo corrente (aquele com menor distância)
         float dc = distancia[corrente];        // distância calculada de s até o nó corrente
-        caminho[count] = Cidades[precede[count]];
+        caminho[count] = Cidades[corrente];
         for(size_t i = 0; i < numNos; i++) {
             if(!calculado[i]) {
                 float novadist = dc + peso(corrente, i);
@@ -135,10 +135,8 @@ float Mapa::MenorCaminho(int s, int t, int precede[]) {
     cout << "Menor caminho = ";
     for(size_t i = 0; i < count; i++) {
         cout << caminho[i] << " -> ";
-        if(!caminho[i].empty())
-            cout << Cidades[corrente];
     }
-
+    cout << Cidades[corrente];
     cout << "\nMenor distancia = ";
     return distancia[t];
 }
