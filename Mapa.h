@@ -23,6 +23,7 @@ class Mapa {
         int adj[MAXNOS][MAXNOS];
         TipoDado Cidades[MAXNOS];
         std::vector<TipoDado> caminho;
+        
         bool validos(int a, int b) const;
         int posCidade(TipoDado cidade) const;
         float MenorCaminho(int corrente, int i, int precede[]);

@@ -7,11 +7,11 @@
 #include <iostream>
 #include <string>
 #include "Mapa.h"
-#include "Mapa.cpp"
 using namespace std;
 
 void adicionaCidade(Mapa &m);
 void uneCidade(Mapa &m);
+void inicio();
 
 int main() {
     Mapa m;
@@ -19,13 +19,23 @@ int main() {
     adicionaCidade(m);
     uneCidade(m);
     // m.imprime(); // ver matriz de adjacentes
-
+    inicio();
     cout << "Digite o nome da Cidade de Origem: " << endl;
     getline(cin, cidadeA);
     cout << "Digite o nome da Cidade de Destino: " << endl;
     getline(cin, cidadeB);
 
+    cout << "Cidade A:" << cidadeA << endl;
+    cout << "Cidade B:" << cidadeB << endl << endl;
     m.MenorCaminho(cidadeA, cidadeB);
+}
+
+void inicio() {
+    cout << "|---------------------------------------|" << endl;
+    cout << "|------------- PEDA (2021) -------------|" << endl;
+    cout << "|----- Menor Caminho entre Cidades -----|" << endl;
+    cout << "|--- Erick Lemmy dos Santos Oliveira ---|" << endl;
+    cout << "|---------------------------------------|" << endl;
 }
 
 void adicionaCidade(Mapa &m) {

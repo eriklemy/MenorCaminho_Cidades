@@ -1,5 +1,6 @@
 #include "Mapa.h"
 #include <iostream>
+#include <strings.h>
 
 using namespace std;
 
@@ -21,9 +22,9 @@ bool Mapa::validos(int a, int b) const {
 
 int Mapa::posCidade(TipoDado cidade) const {
     for(size_t i = 0; i < numNos; i++) {
-        if(cidade.compare(Cidades[i]) == 0) {
+        // compara ignorando CAIXA ALTA | CAIXA BAIXA
+        if(strcasecmp(cidade.c_str(), Cidades[i].c_str()) == 0) 
             return i;
-        }
     }
     return INFINITO;
 };
