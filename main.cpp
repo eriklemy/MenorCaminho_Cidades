@@ -18,7 +18,9 @@ int main() {
     string cidadeA, cidadeB;
     adicionaCidade(m);
     uneCidade(m);
-    // m.imprime(); // ver matriz de adjacentes
+
+    // visualizar matriz de adjacentes
+    // m.imprime(); 
     inicio();
     cout << "Digite o nome da Cidade de Origem: " << endl;
     getline(cin, cidadeA);
