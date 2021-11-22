@@ -25,7 +25,7 @@ int main() {
     cout << "Digite o nome da Cidade de Destino: " << endl;
     getline(cin, cidadeB);
 
-    cout << "Cidade A:" << cidadeA << endl;
+    cout << "\nCidade A:" << cidadeA << endl;
     cout << "Cidade B:" << cidadeB << endl << endl;
     m.MenorCaminho(cidadeA, cidadeB);
 }
