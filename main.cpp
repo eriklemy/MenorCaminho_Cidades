@@ -18,21 +18,21 @@ void inicio();
 int main() {
     Mapa m;
     string cidadeA, cidadeB;
-    adicionaCidadebyTxt(m, "cidades");
     // adicionaCidade(m);
+    adicionaCidadebyTxt(m, "cidades");
     uneCidade(m);
 
     // visualizar matriz de adjacentes
     m.imprime(); 
-    // inicio();
-    // cout << "Digite o nome da Cidade de Origem: " << endl;
-    // getline(cin, cidadeA);
-    // cout << "Digite o nome da Cidade de Destino: " << endl;
-    // getline(cin, cidadeB);
+    inicio();
+    cout << "Digite o nome da Cidade de Origem: " << endl;
+    getline(cin, cidadeA);
+    cout << "Digite o nome da Cidade de Destino: " << endl;
+    getline(cin, cidadeB);
 
-    // cout << "\nCidade A:" << cidadeA << endl;
-    // cout << "Cidade B:" << cidadeB << endl << endl;
-    // m.MenorCaminho(cidadeA, cidadeB);
+    cout << "\nCidade A:" << cidadeA << endl;
+    cout << "Cidade B:" << cidadeB << endl << endl;
+    m.MenorCaminho(cidadeA, cidadeB);
 }
 
 void inicio() {
