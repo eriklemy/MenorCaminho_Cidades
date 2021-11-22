@@ -97,7 +97,7 @@ void Mapa::MenorCaminho(TipoDado CidadeOrigem, TipoDado cidadeDestino) {
     int posCidadeOrigem = posCidade(CidadeOrigem);
     int posCidadeDestino = posCidade(cidadeDestino);
     int precede[numNos] = {posCidadeOrigem};
-    
+    cout << numNos << endl;
     if(posCidadeOrigem != INFINITO && posCidadeDestino != INFINITO)
         cout << MenorCaminho(posCidadeOrigem, posCidadeDestino, precede) << "Km" << endl;
     else cerr << "Cidade nao Encontrada!!" << endl;

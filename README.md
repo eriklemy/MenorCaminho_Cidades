@@ -12,7 +12,7 @@ Entrega 23/11/2021 </pre>
 # Criterio 
 O critério para determinar qual seria este "melhor" caminho pode ser:
 
-- distância (o caminho mais curto); <br>
+[x] distância (o caminho mais curto); <br>
 - custo (o caminho mais barato);    <br>
 - tempo (o caminho mais rápido);    <br>
 - etc. <br>
@@ -26,9 +26,10 @@ Este projeto visa, a partir de um grafo com peso representando um mapa qualquer 
 - o menor caminho entre A e B.
 
 # Observações 
-- A classe Mapa deve ser definida para armazenar o grafo com os nomes das cidades e as distâncias entre elas.
-- O mapa deve ser "pré-configurado" no seu programa (ou lido diretamente de um arquivo), ao invés de ser lido do usuário.
+- A classe Mapa deve ser definida para armazenar o grafo.
+- O mapa deve ser "pré-configurado".
 - As distâncias entre as cidades são dadas em km. <br>
 - Se existe uma estrada de d km de extensão ligando uma cidade A a uma cidade B, então existe também uma estrada de igual extensão ligando a cidade B à cidade A.
-- Use o algoritmo de Dijkstra do menor caminho discutido em aula e disponível no material da disciplina.
+- Use o algoritmo de Dijkstra do menor caminho.
 
+![screenshot](Exemplo_Output.png)
