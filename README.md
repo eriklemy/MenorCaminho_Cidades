@@ -1,5 +1,5 @@
 # MenorCaminho_Cidades
-Usando a estrutura grafo busca o menor caminho entre duas cidades
+Usando a estrutura grafo e o algoritmo de Dijkstra para busca o menor caminho entre duas cidades
 
 # Programação com Estrutura de Dados Avançadas (PEDA)
 <pre>Erick Lemmy dos Santos Oliveira 
