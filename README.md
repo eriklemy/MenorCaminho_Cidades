@@ -32,4 +32,5 @@ Este projeto visa, a partir de um grafo com peso representando um mapa qualquer 
 - Se existe uma estrada de d km de extensão ligando uma cidade A a uma cidade B, então existe também uma estrada de igual extensão ligando a cidade B à cidade A.
 - Use o algoritmo de Dijkstra do menor caminho.
 
+# Output Final
 ![screenshot](Exemplo_Output.png)
