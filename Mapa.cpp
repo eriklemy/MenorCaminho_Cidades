@@ -1,8 +1,7 @@
 #include "Mapa.h"
 #include <iostream>
 
-using std::cout;
-using std::endl;
+using namespace std;
 
 // sobrecarga
 Mapa::Mapa() {
@@ -22,20 +21,16 @@ bool Mapa::validos(int a, int b) const {
 
 int Mapa::posCidade(TipoDado cidade) const {
     for(size_t i = 0; i < numNos; i++) {
-        // cout << "antes: " << Cidades[i] << "| " << cidade << endl;
         if(cidade.compare(Cidades[i]) == 0) {
-            // cout << "depois: " << Cidades[i] << "| " << cidade << endl;
             return i;
         }
     }
-    cout << "teste 1" << endl;
     return INFINITO;
 };
 
 void Mapa::une(TipoDado cidadeA, TipoDado cidadeB, float distancia) {
     int a = posCidade(cidadeA);
     int b = posCidade(cidadeB);
-    cout << "une: " << Cidades[a] << "| " << Cidades[b] << endl;
     if(validos(a, b)) {
         adj[a][b] = adj[b][a] = true;
         _peso[a][b] = _peso[b][a] = distancia;
@@ -58,27 +53,27 @@ bool Mapa::adjacente(int a, int b) const {
 };
 
 void Mapa::imprime() const {
-    cout << "------------------------------------" << endl;
-    cout << "|       Adjacente       | Cidades  |" << endl;
-    cout << "|-----------------------|----------|" << endl;
+    cout << "|-------------------------------------------------------------------------------------------------------|----------------|" << endl;
+    cout << "|                                                      Adjacentes                                       |     Cidades    |" << endl;
+    cout << "|-------------------------------------------------------------------------------------------------------|----------------|" << endl;
+    
+    // abreviação cidades -> primeiro linha
     for(size_t cidades = 0; cidades < numNos; cidades++) 
         cout << "| " << Cidades[cidades].at(0) << Cidades[cidades].at(1) << "\t";
-
-    cout << endl;
     
+    cout << endl;
+    // Adjacentes -> peso / Falso (caso não seja)
     for(size_t i = 0; i < numNos; i++) {
         for(size_t j = 0; j < numNos; j++) {
-            // distancia se as cidades forem adjacentes
             if(adj[i][j]) 
                 cout << "| " << _peso[i][j] << "\t";
-            // cidades nao adjacentes
             if(!adj[i][j])
                 cout << "| False" << "\t";
         }
-        // nome das cidades na ultima coluna
-        cout << "| " << Cidades[i] << endl;
+        // Cidades -> ultima coluna
+        cout << "| " << Cidades[i] << endl; 
     }
-    cout << "---------------------------------\t" << endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------\t" << endl;
 };
 
 float Mapa::peso(int corrente, int i) const {
@@ -87,33 +82,44 @@ float Mapa::peso(int corrente, int i) const {
     else return INFINITO;
 };
 
-void Mapa::MenorCaminho(TipoDado cidadeA, TipoDado cidadeB) {
-    int a = posCidade(cidadeA);
-    int b = posCidade(cidadeB);
-    int precede[] = {a};
-    cout << MenorCaminho(a, b, precede) << "Km" << endl;
+void Mapa::imprimeCaminho(std::vector<TipoDado> caminho, int corrente) const {  
+    cout << "Menor caminho = ";
+    cout << caminho[0] << " -> ";
+    for (int i = caminho.size() - 1; i > 0; i--) 
+        cout << caminho[i] << " -> ";
+    
+    cout << Cidades[corrente];
+    cout << "\nMenor distancia = ";
 };
 
-float Mapa::MenorCaminho(int s, int t, int precede[]) {
+void Mapa::MenorCaminho(TipoDado CidadeOrigem, TipoDado cidadeDestino) {
+    int posCidadeOrigem = posCidade(CidadeOrigem);
+    int posCidadeDestino = posCidade(cidadeDestino);
+    int precede[numNos] = {posCidadeOrigem};
+    
+    if(posCidadeOrigem != INFINITO && posCidadeDestino != INFINITO)
+        cout << MenorCaminho(posCidadeOrigem, posCidadeDestino, precede) << "Km" << endl;
+    else cerr << "Cidade nao Encontrada!!" << endl;
+};
+
+// algoritmo de Dijkstra do menor caminho
+float Mapa::MenorCaminho(int cidadeOrigem, int cidadeDestino, int precede[]) {
     float distancia[MAXNOS];
     bool calculado[MAXNOS];
-    TipoDado caminho[numNos];
-
+    
     for(size_t i = 0; i < numNos; i++) {
         distancia[i] = INFINITO;
         calculado[i] = false;
     }
 
-    distancia[s] = 0;
-    calculado[s] = true;
-    int corrente = s;
+    distancia[cidadeOrigem] = 0;
+    calculado[cidadeOrigem] = true;
+    int corrente = cidadeOrigem;
 
-    int count = 0;
-    while(corrente != t) {
+    while(corrente != cidadeDestino) {
         float menordist = INFINITO;            // menor das novas distâncias calculadas
         int k;                                 // próximo corrente (aquele com menor distância)
-        float dc = distancia[corrente];        // distância calculada de s até o nó corrente
-        caminho[count] = Cidades[corrente];
+        float dc = distancia[corrente];        // distância calculada de cidadeOrigem até o nó corrente
         for(size_t i = 0; i < numNos; i++) {
             if(!calculado[i]) {
                 float novadist = dc + peso(corrente, i);
@@ -129,14 +135,17 @@ float Mapa::MenorCaminho(int s, int t, int precede[]) {
         } // fim do for
         corrente = k;
         calculado[corrente] = true;
-        count++;
     }
 
-    cout << "Menor caminho = ";
-    for(size_t i = 0; i < count; i++) {
-        cout << caminho[i] << " -> ";
-    }
-    cout << Cidades[corrente];
-    cout << "\nMenor distancia = ";
-    return distancia[t];
+    TipoDado cidadeAtual = Cidades[cidadeOrigem];
+    int cidadeInicial = posCidade(Cidades[corrente]);
+    do {
+        caminho.push_back(cidadeAtual);
+        cidadeAtual = Cidades[precede[cidadeInicial]];
+        cidadeInicial = posCidade(cidadeAtual);
+    } while (cidadeAtual != Cidades[cidadeOrigem]);
+
+    imprimeCaminho(caminho, corrente);
+
+    return distancia[cidadeDestino];
 }
