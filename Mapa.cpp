@@ -60,7 +60,7 @@ void Mapa::imprime() const {
     
     // abreviação cidades -> primeiro linha
     for(size_t cidades = 0; cidades < numNos; cidades++) 
-        cout << "| " << Cidades[cidades].at(0) << Cidades[cidades].at(1) << "\t";
+        cout << "| " << Cidades[cidades].substr(0, 5) << "\t";
     
     cout << endl;
     // Adjacentes -> peso / Falso (caso não seja)

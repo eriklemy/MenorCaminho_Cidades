@@ -5,31 +5,34 @@
         MENOR CAMINHO ENTRE CIDADES
 */
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "Mapa.h"
 using namespace std;
 
 void adicionaCidade(Mapa &m);
+void adicionaCidadebyTxt(Mapa &m, string nomeArq);
 void uneCidade(Mapa &m);
 void inicio();
 
 int main() {
     Mapa m;
     string cidadeA, cidadeB;
-    adicionaCidade(m);
+    adicionaCidadebyTxt(m, "cidades");
+    // adicionaCidade(m);
     uneCidade(m);
 
     // visualizar matriz de adjacentes
-    // m.imprime(); 
-    inicio();
-    cout << "Digite o nome da Cidade de Origem: " << endl;
-    getline(cin, cidadeA);
-    cout << "Digite o nome da Cidade de Destino: " << endl;
-    getline(cin, cidadeB);
+    m.imprime(); 
+    // inicio();
+    // cout << "Digite o nome da Cidade de Origem: " << endl;
+    // getline(cin, cidadeA);
+    // cout << "Digite o nome da Cidade de Destino: " << endl;
+    // getline(cin, cidadeB);
 
-    cout << "\nCidade A:" << cidadeA << endl;
-    cout << "Cidade B:" << cidadeB << endl << endl;
-    m.MenorCaminho(cidadeA, cidadeB);
+    // cout << "\nCidade A:" << cidadeA << endl;
+    // cout << "Cidade B:" << cidadeB << endl << endl;
+    // m.MenorCaminho(cidadeA, cidadeB);
 }
 
 void inicio() {
@@ -38,6 +41,13 @@ void inicio() {
     cout << "|----- Menor Caminho entre Cidades -----|" << endl;
     cout << "|--- Erick Lemmy dos Santos Oliveira ---|" << endl;
     cout << "|---------------------------------------|" << endl;
+}
+
+void adicionaCidadebyTxt(Mapa &m, string nomeArq) {
+    ifstream file(nomeArq + ".txt");
+    string data = "";
+    while(getline(file, data, ','))
+       m.adiciona_cidade(data);
 }
 
 void adicionaCidade(Mapa &m) {
