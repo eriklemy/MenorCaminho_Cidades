@@ -6,8 +6,6 @@ using namespace std;
 
 Mapa::Mapa() {
     numNos = 0;
-    adj[0][0] = false;
-    _peso[0][0] = INFINITO;
 };
 
 void Mapa::adiciona_cidade(TipoDado cidade) {
