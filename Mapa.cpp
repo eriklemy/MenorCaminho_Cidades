@@ -140,8 +140,8 @@ float Mapa::MenorCaminho(int cidadeOrigem, int cidadeDestino, int precede[]) {
         calculado[corrente] = true;
     }
 
-    TipoDado cidadeAtual = Cidades[cidadeDestino];
-    int correnteCidade = posCidade(Cidades[corrente]);
+    TipoDado cidadeAtual = Cidades[cidadeDestino];  // cidadeDestino = corrente
+    int correnteCidade = cidadeDestino;             // posCorrenteCidade = cidadeDestino 
     do {
         caminho.push_back(cidadeAtual);
         cidadeAtual = Cidades[precede[correnteCidade]];
