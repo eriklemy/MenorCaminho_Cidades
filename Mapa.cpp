@@ -84,7 +84,6 @@ float Mapa::peso(int corrente, int i) const {
 
 void Mapa::imprimeCaminho(std::vector<TipoDado> caminho) const {  
     cout << "Menor Caminho = ";
-    
     for (size_t i = caminho.size() - 1; i > 0; i--) 
         cout << caminho[i] << " -> ";
     cout << caminho[0];
@@ -95,11 +94,17 @@ void Mapa::MenorCaminho(TipoDado CidadeOrigem, TipoDado cidadeDestino) {
     int posCidadeDestino = posCidade(cidadeDestino);
     int precede[numNos] = {posCidadeOrigem};
 
-    if(posCidadeOrigem != INFINITO && posCidadeDestino != INFINITO) {
-        cout << "Menor distancia = ";
+    cout << "Menor distancia = ";
+    if(posCidadeOrigem == posCidadeDestino) {
+        cout << _peso[posCidadeOrigem][posCidadeDestino] << " Km" << endl;
+        cout << "Menor Caminho = " << Cidades[posCidadeOrigem] << " -> " << Cidades[posCidadeDestino] << endl;
+        cout << "Voce ja esta na cidade de Destino!!" << endl;
+    } 
+    else if(posCidadeOrigem != INFINITO && posCidadeDestino != INFINITO) {
         cout << MenorCaminho(posCidadeOrigem, posCidadeDestino, precede) << " Km" << endl;
         imprimeCaminho(caminho);
-    } else cerr << "Cidade nao Encontrada!!" << endl;
+    } 
+    else cerr << "Cidade nao Encontrada!!" << endl;
 };
 
 // algoritmo de Dijkstra do menor caminho
@@ -138,13 +143,13 @@ float Mapa::MenorCaminho(int cidadeOrigem, int cidadeDestino, int precede[]) {
     }
 
     TipoDado cidadeAtual = Cidades[cidadeDestino];
-    int cidadeInicial = posCidade(cidadeAtual);
+    int correnteCidade = posCidade(Cidades[corrente]);
     do {
         caminho.push_back(cidadeAtual);
-        cidadeAtual = Cidades[precede[cidadeInicial]];
-        cidadeInicial = posCidade(cidadeAtual);
+        cidadeAtual = Cidades[precede[correnteCidade]];
+        correnteCidade = posCidade(cidadeAtual);
     } while (cidadeAtual != Cidades[cidadeOrigem]);
-
+    
     // ultima posição vai ser a cidade de Origem e a primeira é a cidade de Destino
     caminho.push_back(cidadeAtual); 
 
