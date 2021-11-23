@@ -84,16 +84,16 @@ float Mapa::peso(int corrente, int i) const {
 
 void Mapa::imprimeCaminho(std::vector<TipoDado> caminho) const {  
     cout << "Menor Caminho = ";
+    
     for (size_t i = caminho.size() - 1; i > 0; i--) 
         cout << caminho[i] << " -> ";
-    
     cout << caminho[0];
 };
 
 void Mapa::MenorCaminho(TipoDado CidadeOrigem, TipoDado cidadeDestino) {
     int posCidadeOrigem = posCidade(CidadeOrigem);
     int posCidadeDestino = posCidade(cidadeDestino);
-    int precede[numNos];
+    int precede[numNos] = {posCidadeOrigem};
 
     if(posCidadeOrigem != INFINITO && posCidadeDestino != INFINITO) {
         cout << "Menor distancia = ";
