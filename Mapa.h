@@ -27,6 +27,6 @@ class Mapa {
         bool validos(int a, int b) const;
         int posCidade(TipoDado cidade) const;
         float MenorCaminho(int corrente, int i, int precede[]);
-        void imprimeCaminho(std::vector<TipoDado> caminho, int corrente) const;
+        void imprimeCaminho(std::vector<TipoDado> caminho) const;
 };
 #endif // !MAPA_H

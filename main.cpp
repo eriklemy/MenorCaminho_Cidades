@@ -18,14 +18,14 @@ void inicio();
 int main() {
     Mapa m;
     string cidadeA, cidadeB;
-    // adicionaCidade(m);
-    adicionaCidadebyTxt(m, "cidades");
+    // adicionaCidadebyTxt(m, "cidades");
+    adicionaCidade(m);
     uneCidade(m);
 
     // visualizar matriz de adjacentes
-    m.imprime(); 
+    // m.imprime(); 
     inicio();
-    
+
     cout << "Digite o nome da Cidade de Origem: " << endl;
     getline(cin, cidadeA);
     cout << "Digite o nome da Cidade de Destino: " << endl;
@@ -38,10 +38,11 @@ int main() {
 
 void inicio() {
     cout << "|---------------------------------------|" << endl;
-    cout << "|------------- PEDA (2021) -------------|" << endl;
-    cout << "|----- Menor Caminho entre Cidades -----|" << endl;
-    cout << "|--- Erick Lemmy dos Santos Oliveira ---|" << endl;
+    cout << "|--- PEDA (2021)                        |" << endl;
+    cout << "|--- Menor Caminho entre Cidades        |" << endl;
+    cout << "|--- Erick Lemmy dos Santos Oliveira    |" << endl;
     cout << "|---------------------------------------|" << endl;
+    cout << "Entre com a cidade de Origem e Destino para obter o menor caminho!!\n" << endl;
 }
 
 void adicionaCidadebyTxt(Mapa &m, string nomeArq) {
