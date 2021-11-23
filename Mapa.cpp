@@ -138,13 +138,15 @@ float Mapa::MenorCaminho(int cidadeOrigem, int cidadeDestino, int precede[]) {
     }
 
     TipoDado cidadeAtual = Cidades[cidadeDestino];
-    int cidadeInicial = posCidade(Cidades[corrente]);
+    int cidadeInicial = posCidade(cidadeAtual);
     do {
         caminho.push_back(cidadeAtual);
         cidadeAtual = Cidades[precede[cidadeInicial]];
         cidadeInicial = posCidade(cidadeAtual);
     } while (cidadeAtual != Cidades[cidadeOrigem]);
-    caminho.push_back(cidadeAtual);
+
+    // ultima posição vai ser a cidade de Origem e a primeira é a cidade de Destino
+    caminho.push_back(cidadeAtual); 
 
     return distancia[cidadeDestino];
 }
