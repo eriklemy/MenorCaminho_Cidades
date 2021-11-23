@@ -22,9 +22,8 @@ int main() {
     adicionaCidade(m);
     uneCidade(m);
 
-    // visualizar matriz de adjacentes
-    // m.imprime(); 
     inicio();
+    // m.imprime();  // visualizar matriz de adjacentes
 
     cout << "Digite o nome da Cidade de Origem: " << endl;
     getline(cin, cidadeA);
@@ -45,6 +44,8 @@ void inicio() {
     cout << "Entre com a cidade de Origem e Destino para obter o menor caminho!!\n" << endl;
 }
 
+// Ao usar txt se atentar a forma 
+// ex: Curitiba,Registro,Sao Paulo,Itarare,Londrina,...
 void adicionaCidadebyTxt(Mapa &m, string nomeArq) {
     ifstream file(nomeArq + ".txt");
     string data = "";
