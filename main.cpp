@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Mapa.h"
+#include "src/Mapa.h"
 using namespace std;
 
 void adicionaCidade(Mapa &m);
@@ -85,7 +85,7 @@ void uneCidade(Mapa &m) {
     m.une("Mafra", "Blumenau", 165);
     m.une("Mafra", "Joinville", 136);
     m.une("Mafra", "Porto Uniao", 143);
-    m.une("Mafra", "Lages", 349);
+    m.une("Mafra", "Lages", 10);
     m.une("Lages", "Porto Uniao", 271);
     m.une("Lages", "Blumenau", 223);
     m.une("Lages", "Florianopolis", 231);

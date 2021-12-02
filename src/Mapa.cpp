@@ -65,7 +65,7 @@ void Mapa::imprime() const {
         for(size_t j = 0; j < numNos; j++) {
             if(adj[i][j]) 
                 cout << "| " << _peso[i][j] << "\t";
-            if(!adj[i][j])
+            else
                 cout << "| False" << "\t";
         }
         // Cidades -> ultima coluna
@@ -90,7 +90,7 @@ void Mapa::imprimeCaminho(std::vector<TipoDado> caminho) const {
 void Mapa::MenorCaminho(TipoDado CidadeOrigem, TipoDado cidadeDestino) {
     int posCidadeOrigem = posCidade(CidadeOrigem);
     int posCidadeDestino = posCidade(cidadeDestino);
-    int precede[numNos] = {posCidadeOrigem};
+    int precede[numNos];
 
     cout << "Menor distancia = ";
     if(posCidadeOrigem == posCidadeDestino) {
